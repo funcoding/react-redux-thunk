@@ -1,4 +1,4 @@
-Sample [application](https://github.com/funcoding/react-redux-thunk) making use of thunk middleware in react redux.
+Sample [application](https://blog.vinaykumar.co/comprehending-redux-thunk/) making use of thunk middleware in react redux.
 
 ## To run
 
