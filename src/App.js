@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
+import {displayMessage, displayAfter5Secs} from './actions';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render(){
+    const handleOnClick = {
+      immediate: () => this.props.dispatch(displayMessage('I was dispatched immediately.')),
+      delayed: () => this.props.dispatch(displayAfter5Secs())
+    }
+    
+    return (
+      <div>
+        <button type="button" onClick={handleOnClick.immediate}>Dispatch immediately</button>
+        <button type="button" onClick={handleOnClick.delayed}>Dispatch after 5 secs</button>
+        <h4>{this.props.message}</h4>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {...state.displayMessageReducer}
+}
+
+export default connect(mapStateToProps)(App);
